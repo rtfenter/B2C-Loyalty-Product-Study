@@ -1,0 +1,38 @@
+.scenario-reset { display: inline-flex; flex-shrink: 0; align-self: center; }
+.scenario-reset .reset-control {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 40px; padding: 10px 12px; border: 1px solid #c8b6b6;
+  border-radius: 4px; background: transparent; color: var(--plum);
+  font: inherit; font-size: 11px; line-height: 1.4; white-space: nowrap;
+  transition: background .2s, border-color .2s;
+}
+.scenario-reset .reset-control:hover:not(:disabled) { background: #e9dfdd; border-color: #a88791; }
+.scenario-reset .reset-control:focus-visible,
+.reset-dialog .reset-dialog-action:focus-visible { outline: 3px solid var(--plum); outline-offset: 4px; }
+.scenario-reset .reset-control:disabled { opacity: .5; cursor: not-allowed; }
+.reset-dialog {
+  width: min(480px, calc(100% - 36px)); padding: 30px; border: 1px solid #cfbfbb;
+  border-radius: 10px; color: #252324; background: #f8f6f2; box-shadow: 0 18px 70px #30202330;
+}
+.reset-dialog::backdrop { background: #30202366; }
+.reset-dialog .eyebrow { color: var(--plum); font-size: 9px; margin-bottom: 16px; }
+.reset-dialog h2 { font-size: 30px; line-height: 1.15; letter-spacing: -1px; margin-bottom: 16px; }
+.scenario-reset .reset-dialog > p:not(.eyebrow) { font-size: 13px; color: var(--muted); line-height: 1.65; margin: 0; }
+.reset-dialog-actions { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 12px; margin-top: 25px; }
+.reset-dialog .reset-dialog-action {
+  display: inline-flex; align-items: center; justify-content: center; min-height: 46px;
+  padding: 13px 18px; border: 1px solid #cfbfbb; border-radius: 4px;
+  background: transparent; color: #252324; font: inherit; font-size: 11px; line-height: 1.4;
+}
+.reset-dialog .reset-dialog-action:hover { background: #e9dfdd; }
+.reset-dialog .is-confirm { background: var(--plum); border-color: var(--plum); color: #fff; }
+.reset-dialog .is-confirm:hover { background: #55313b; }
+.purchase-confirmation-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 18px; margin-top: 18px; }
+@media (max-width: 800px) {
+  .study-destinations > .scenario-reset { justify-self: start; }
+  .scenario-reset .reset-control { min-height: 44px; }
+  .reset-dialog { padding: 24px; }
+}
+@media (max-width: 650px) {
+  .studio-title > .scenario-reset, .omni-intro > .scenario-reset { margin-top: 19px; }
+}

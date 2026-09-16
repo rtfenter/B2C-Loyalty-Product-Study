@@ -1,0 +1,7 @@
+import { ShoppingBag, UserRound, ArrowUpRight } from 'lucide-react';
+import { BrandMark } from './Brand';
+export type Page = 'home' | 'rewards' | 'bag' | 'studio' | 'journey' | 'offer' | 'redemption' | 'omnichannel';
+export function Header({ page }: { page: Page }) {
+  return <><div className="announcement">A little more movement. A little more you.</div><header className="header"><a className="wordmark" href="#home" aria-label="FORM home">FORM<span>®</span></a><nav aria-label="Main navigation"><a href="#bag" aria-current={page === 'bag' ? 'page' : undefined}>Your bag</a><a href="#rewards" aria-current={page === 'rewards' ? 'page' : undefined}>FORM Rewards</a><a className="story-link" href="#home" onClick={() => setTimeout(() => document.getElementById('our-story')?.scrollIntoView({ behavior: 'smooth' }), 50)}>Our philosophy</a></nav><div className="header-actions"><a href="#rewards" aria-label="Maya’s rewards account"><UserRound size={20}/><span>Maya</span></a><a className="bag-link" href="#bag" aria-label="Shopping bag, 2 items"><ShoppingBag size={20}/><span className="bag-count">2</span></a></div></header></>;
+}
+export function Footer() { return <footer><a href="#home" className="wordmark">FORM</a><p>Made for your kind of movement.</p><div className="footer-note"><BrandMark/><span>Fictional brand. Thoughtful product study.<br/>Local demo · No real purchases or customer data</span></div><a href="#rewards" className="footer-rewards">Find your rewards <ArrowUpRight size={16}/></a></footer>; }

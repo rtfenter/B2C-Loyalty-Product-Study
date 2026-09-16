@@ -1,0 +1,10 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import ts from 'typescript';
+const code=ts.transpileModule(readFileSync(new URL('../src/omnichannelScenario.ts',import.meta.url),'utf8'),{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText;
+const {startingOmni,initialOmni,omniReducer:r,omniSnapshot:s,channelPurchases,omniMember}=await import(`data:text/javascript;base64,${Buffer.from(code).toString('base64')}`);
+test('300 starting; ecommerce earns 78 once; delayed POS is excluded',()=>{assert.equal(s(startingOmni).balance,300);assert.equal(s(initialOmni).balance,378);assert.equal(s(r(initialOmni,{type:'receive',channel:'online'})).balance,378);assert.equal(s(initialOmni).history.length,3);assert.equal(s(initialOmni).posConfirmed,false);});
+test('POS awards 48 once and confirmed history reconciles to 426',()=>{const done=r(initialOmni,{type:'receive',channel:'pos'});assert.equal(s(done).balance,426);assert.equal(s(done).balance-s(initialOmni).balance,48);assert.equal(s(done).posConfirmed,true);const duplicate=r(done,{type:'receive',channel:'pos'});assert.equal(duplicate.duplicate,true);assert.equal(s(duplicate).balance,426);assert.equal(s(duplicate).history.length,4);assert.equal(s(done).history.reduce((n,row)=>n+row.points,0),426);});
+test('both purchases resolve to one Maya identity',()=>{for(const p of Object.values(channelPurchases))assert.equal(p.memberId,omniMember.id);assert.notEqual(channelPurchases.online.id,channelPurchases.pos.id);});
+test('replay restores delayed POS without mutating initial scenario',()=>{const before=JSON.stringify(initialOmni);const done=r(initialOmni,{type:'receive',channel:'pos'});const replay=r(done,{type:'replay'});assert.deepEqual(replay,initialOmni);assert.equal(s(replay).balance,378);assert.equal(JSON.stringify(initialOmni),before);});
