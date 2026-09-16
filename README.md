@@ -19,7 +19,7 @@ The experience uses FORM, a fictional women's activewear brand, to make the prod
 
 ## About FORM
 
-FORM and all members, transactions, campaigns, program rules, results, and imagery in this project are fictional. Simulated metrics are illustrative and do not represent Under Armour, Pax8, or any other company.
+FORM and all members, transactions, campaigns, program rules, results, and imagery in this project are fictional. Simulated metrics are illustrative and do not represent any current company. 
 
 ## Why I built it
 
