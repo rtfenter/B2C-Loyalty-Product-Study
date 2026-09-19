@@ -1,3 +1,36 @@
+# B2C Commerce & Loyalty
+
+## Purchase ≠ Final Transaction
+
+A focused interactive PM case study following one journey: **Redeem → Purchase → Return → New Purchase**. Customer View and Product View remain visible together, with previous, next, and replay controls.
+
+**Complexity belongs underneath the experience.** The customer should understand what happened to their money and rewards without needing to understand the reconciliation logic that made the result correct.
+
+The fictional customer starts with 1,000 points, exchanges them for a $5 reward, and purchases a $20 item with the reward plus a $15 payment. Earning is 1 point per qualifying merchandise dollar before reward payment, so the purchase earns 20 points. One return action refunds $15, restores the original 1,000 points, and reverses the original 20-point earning. A separate $10 purchase earns 10 new points. The final position is 1,010 points, $10 net paid, no active reward, and the new $10 item retained.
+
+`src/valueExchange.ts` contains the ordered records and originating-event references. `src/redemptionScenario.ts` controls navigation; moving backward or replaying selects a historical position without posting duplicate events. The return adjustments appear atomically. This is a deterministic local simulation, not a payment integration.
+
+### Run and verify
+
+```sh
+npm ci
+npm run dev
+npm test
+npm run typecheck
+npm run build
+```
+
+Local URL: http://localhost:5173/B2C-Loyalty-Product-Study/ (use the port printed by Vite if different).
+
+### Preserved for the next case study
+
+Campaign Studio, audience segmentation, experiments, targeted offers, promotional logic, supporting fixtures, and their tests remain in the repository. They are disconnected from the rendered application and reserved for **Engagement & Incentives — Enrollment ≠ Activation**. Other earlier study modules are also retained but not mounted.
+
+The React/TypeScript/Vite setup and GitHub Pages base path are unchanged. The existing deployment workflow runs tests, typechecking, and the production build. No deployment is required for local review.
+
+<details>
+<summary>Earlier study documentation (historical; not the current rendered experience)</summary>
+
 # B2C Loyalty Product Study
 
 An interactive product study exploring how a consumer loyalty program moves from enrollment to activation, engagement, earning, targeted promotions, experimentation, redemption, and retention.
@@ -105,3 +138,5 @@ The production base path is `/B2C-Loyalty-Product-Study/`. Hash routes remain wi
 `.github/workflows/pages.yml` installs dependencies with `npm ci`, runs tests and typecheck, builds, then uploads and deploys `dist` using GitHub’s Pages artifact actions. It runs on pushes to `main` and can also be started manually. In repository **Settings → Pages → Build and deployment**, set **Source** to **GitHub Actions**.
 
 To check the production build locally, run `npm run build` followed by `npm run preview` and open the repository path at the address Vite prints.
+
+</details>
