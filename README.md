@@ -1,3 +1,15 @@
+## New local study: Engagement & Incentives — Enrollment ≠ Activation
+
+Open `http://127.0.0.1:5173/B2C-Loyalty-Product-Study/#engagement`. The root URL continues to show the approved Commerce & Loyalty study.
+
+The new study keeps Customer View and Product View together, with three behavioral objectives and the same 2× points mechanic. Product decisions follow objective → audience → eligibility → incentive → success event → experiment → result/measurement. Only activation has supplied fictional results: 24% treatment, 18% control, +6 percentage points. Neither customer interactions nor objective changes generate aggregate outcomes. Eligible audience counts, sample sizes, supporting results, and guardrail results are not supplied.
+
+Explicit study assumptions: a second-purchase audience whose first qualifying purchase was within 30 days; contactability and promotion eligibility for that audience; a 14-day second-purchase response window; follow-up through day 60 for each objective; a proposed 50/50 treatment/control allocation (no actual member assignments); 1 base point per $1; a $20 demo purchase on day 3; one automatic bonus with validity matching each objective's response window. Day 0 is exposure, with an equivalent index time for control; day-based windows include their final day.
+
+The preserved campaign/offer code and the approved commerce components, calculations, styles, and tests remain intact. No campaign or payment is sent.
+
+---
+
 # B2C Commerce & Loyalty
 
 ## Purchase ≠ Final Transaction
